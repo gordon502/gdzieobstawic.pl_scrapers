@@ -109,11 +109,30 @@ class FlashscoreProvider
                     continue;
                 }
 
+                $homeSum = 0.0;
+                $drawSum = 0.0;
+                $awaySum = 0.0;
+
+                /** @var Stake $singleStake */
+                foreach ($allStakes[$i] as $singleStake) {
+                    $homeSum += $singleStake->home;
+                    $drawSum += $singleStake->draw;
+                    $awaySum += $singleStake->away;
+                }
+
+                $count = count($allStakes[$i]);
+                $meanHome = round($homeSum / $count, 2);
+                $meanDraw = round($drawSum / $count, 2);
+                $meanAway = round($awaySum / $count, 2);
+
                 $events[] = new Event(
                     id: $i + 1,
                     homeTeam: $homeTeams[$i],
                     awayTeam: $awayTeams[$i],
                     date: (new \DateTime($today . ' ' . $eventTimes[$i] . ':00')),
+                    meanHome: $meanHome,
+                    meanDraw: $meanDraw,
+                    meanAway: $meanAway,
                     stakes: $allStakes[$i]
                 );
             }

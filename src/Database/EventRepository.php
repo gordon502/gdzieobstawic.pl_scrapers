@@ -18,6 +18,9 @@ class EventRepository extends AbstractRepository
                 "home_team"	TEXT NOT NULL,
                 "away_team"	TEXT NOT NULL,
                 "date" TEXT NOT NULL,
+                "mean_home" REAL NOT NULL,
+                "mean_draw" REAL NOT NULL,
+                "mean_away" REAL NOT NULL,
                 PRIMARY KEY("id" AUTOINCREMENT)
             )
         ');
@@ -59,6 +62,9 @@ class EventRepository extends AbstractRepository
                     homeTeam: $entry['home_team'],
                     awayTeam: $entry['away_team'],
                     date: new \DateTime($entry['date']),
+                    meanHome: $entry['mean_home'],
+                    meanDraw: $entry['mean_draw'],
+                    meanAway: $entry['mean_away'],
                     stakes: []
                 );
             }
@@ -80,12 +86,15 @@ class EventRepository extends AbstractRepository
             throw new \InvalidArgumentException();
         }
 
-        $eventStmt = $this->pdo->prepare('INSERT INTO event (id, home_team, away_team, date) VALUES (?, ?, ?, ?)');
+        $eventStmt = $this->pdo->prepare('INSERT INTO event (id, home_team, away_team, date, mean_home, mean_draw, mean_away) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $result = $eventStmt->execute([
             $object->id,
             $object->homeTeam,
             $object->awayTeam,
-            $object->date->format('Y-m-d H:i:s')
+            $object->date->format('Y-m-d H:i:s'),
+            $object->meanHome,
+            $object->meanDraw,
+            $object->meanAway
         ]);
 
         if ($result === false) {

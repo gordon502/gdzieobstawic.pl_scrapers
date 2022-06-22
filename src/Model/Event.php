@@ -19,6 +19,9 @@ class Event implements JsonSerializable
         public string $homeTeam,
         public string $awayTeam,
         public DateTime $date,
+        public float $meanHome,
+        public float $meanDraw,
+        public float $meanAway,
         public array $stakes
     ) { }
 
@@ -28,6 +31,9 @@ class Event implements JsonSerializable
             'homeTeam' => $this->homeTeam,
             'awayTeam' => $this->awayTeam,
             'date' => $this->date->format('d-m-Y H:i:s'),
+            'meanHome' => $this->meanHome,
+            'meanDraw' => $this->meanDraw,
+            'meanAway' => $this->meanAway,
             'stakes' => $this->stakes
         ];
     }
