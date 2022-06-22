@@ -65,7 +65,7 @@ class FlashscoreProvider
                     'GET',
                     sprintf('https://www.flashscore.pl/mecz/%s/#/zestawienie-kursow/kursy-1x2/koniec-meczu', $id)
                 );
-                $this->client->wait(1);
+                $this->client->wait(3);
 
                 $crawler = $this->client->getCrawler();
 

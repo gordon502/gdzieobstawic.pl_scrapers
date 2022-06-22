@@ -22,4 +22,4 @@ foreach ($result as $index => $event) {
     $eventRepository->insert($event);
 }
 
-echo 'Data from flashscore have been scraped successfully!';
+echo 'Data from flashscore has been scraped successfully!';
