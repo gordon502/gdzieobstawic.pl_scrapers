@@ -1,0 +1,21 @@
+{
+    "name": "gordon502/gdzieobstawic.pl_scrapers",
+    "description": "Simple plain PHP files to scrap data from sites that provides information and stakes from bookmakers about matches",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gordon502",
+            "email": "gordonarek@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/panther": "^2.0",
+        "dbrekelmans/bdi": "^1.0",
+      "ext-pdo": "*"
+    }
+}
