@@ -71,7 +71,7 @@ class EventRepository extends AbstractRepository
             );
         }
 
-        return $events;
+        return array_values($events);
     }
 
     public function insert(object $object): bool
